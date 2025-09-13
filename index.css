@@ -1,0 +1,353 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GatiSetu Design System - Indian Railways AI Control System
+All colors MUST be HSL. Government-friendly, professional theme.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 213 100% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 213 100% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 100% 15%;
+
+    /* Railway Blue - Primary Indian Railways color */
+    --primary: 213 100% 31%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 213 100% 40%;
+    --primary-dark: 213 100% 25%;
+
+    /* Government secondary colors */
+    --secondary: 210 17% 96%;
+    --secondary-foreground: 213 100% 15%;
+
+    --muted: 210 17% 96%;
+    --muted-foreground: 215 15% 47%;
+
+    --accent: 210 17% 94%;
+    --accent-foreground: 213 100% 15%;
+
+    /* India Green accent */
+    --success: 123 100% 30%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 123 100% 85%;
+
+    /* Deep Saffron accent */
+    --warning: 25 100% 60%;
+    --warning-foreground: 213 100% 15%;
+    --warning-light: 25 100% 90%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 17% 91%;
+    --input: 210 17% 96%;
+    --ring: 213 100% 31%;
+
+    --radius: 1rem;
+
+    /* Enhanced radius for cards */
+    --radius-lg: 1.5rem;
+    --radius-xl: 2rem;
+
+    /* Box shadows for cards */
+    --shadow-soft: 0 4px 6px -1px hsl(213 100% 31% / 0.08), 0 2px 4px -1px hsl(213 100% 31% / 0.04);
+    --shadow-medium: 0 10px 15px -3px hsl(213 100% 31% / 0.1), 0 4px 6px -2px hsl(213 100% 31% / 0.05);
+    --shadow-large: 0 25px 50px -12px hsl(213 100% 31% / 0.25);
+
+    /* Animations and transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-quick: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* Enhanced card variants with better animations */
+  .card-enhanced {
+    @apply bg-card border border-border rounded-xl shadow-soft transition-[var(--transition-smooth)] cursor-pointer;
+  }
+
+  .card-enhanced:hover {
+    @apply shadow-medium translate-y-[-4px] scale-[1.02];
+  }
+
+  .card-interactive {
+    @apply card-enhanced hover:border-primary/40 hover:bg-primary/5;
+  }
+
+  /* Beautiful glassmorphism cards */
+  .card-glass {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20 rounded-xl shadow-large;
+  }
+
+  /* Animated borders */
+  .border-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .border-glow::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl bg-gradient-to-r from-primary via-success to-warning opacity-0 transition-opacity duration-500;
+  }
+
+  .border-glow:hover::before {
+    @apply opacity-20;
+  }
+
+  /* Enhanced KPI cards */
+  .kpi-card {
+    @apply card-enhanced p-6 space-y-3 overflow-hidden relative;
+  }
+
+  .kpi-card::before {
+    content: '';
+    @apply absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/10 to-transparent rounded-full transform translate-x-8 -translate-y-8;
+  }
+
+  .kpi-value {
+    @apply text-4xl font-bold text-primary relative z-10;
+  }
+
+  .kpi-label {
+    @apply text-sm font-medium text-muted-foreground uppercase tracking-wider relative z-10;
+  }
+
+  .kpi-trend {
+    @apply text-xs flex items-center gap-1 relative z-10;
+  }
+
+  /* Alert styles with animations */
+  .alert-critical {
+    @apply bg-destructive/10 border-destructive/30 text-destructive animate-pulse;
+  }
+
+  .alert-warning {
+    @apply bg-warning/10 border-warning/30 text-warning-foreground;
+  }
+
+  .alert-success {
+    @apply bg-success/10 border-success/30 text-success-foreground;
+  }
+
+  /* Sidebar styles */
+  .sidebar-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg transition-[var(--transition-quick)] cursor-pointer relative overflow-hidden;
+  }
+
+  .sidebar-item:hover {
+    @apply bg-primary/10 text-primary transform translate-x-1;
+  }
+
+  .sidebar-item.active {
+    @apply bg-primary text-primary-foreground shadow-soft;
+  }
+
+  .sidebar-item.active::before {
+    content: '';
+    @apply absolute left-0 top-0 h-full w-1 bg-primary-foreground;
+  }
+
+  /* Network visualization container */
+  .network-3d-container {
+    @apply relative bg-gradient-to-br from-primary/5 via-background to-success/5 rounded-xl overflow-hidden border border-primary/20;
+  }
+
+  /* Loading animations */
+  .loading-shimmer {
+    @apply animate-pulse bg-gradient-to-r from-muted to-muted/50;
+  }
+
+  /* Pulse animations for live elements */
+  .live-indicator {
+    @apply relative;
+  }
+
+  .live-indicator::before {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-success animate-ping;
+  }
+
+  .live-indicator::after {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-success;
+  }
+
+  /* Train movement animations */
+  .train-moving {
+    @apply animate-[move_3s_linear_infinite];
+  }
+
+  @keyframes move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100px); }
+  }
+
+  /* Data streaming effect */
+  .data-stream {
+    @apply relative overflow-hidden;
+  }
+
+  .data-stream::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent transform -translate-x-full animate-[stream_2s_infinite];
+  }
+
+  @keyframes stream {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+
+  /* Enhanced buttons */
+  .btn-railway {
+    @apply bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-primary-foreground font-medium rounded-lg transition-[var(--transition-quick)] shadow-soft relative overflow-hidden;
+  }
+
+  .btn-railway:hover {
+    @apply shadow-medium transform translate-y-[-2px];
+  }
+
+  .btn-railway::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full transition-transform duration-500;
+  }
+
+  .btn-railway:hover::before {
+    @apply translate-x-full;
+  }
+
+  .btn-success {
+    @apply bg-gradient-to-r from-success to-success/80 hover:from-success/90 hover:to-success text-success-foreground;
+  }
+
+  .btn-warning {
+    @apply bg-gradient-to-r from-warning to-warning/80 hover:from-warning/90 hover:to-warning text-warning-foreground;
+  }
+
+  /* Status indicators */
+  .status-online {
+    @apply bg-success text-success-foreground animate-pulse;
+  }
+
+  .status-warning {
+    @apply bg-warning text-warning-foreground;
+  }
+
+  .status-offline {
+    @apply bg-destructive text-destructive-foreground;
+  }
+
+  /* Typography enhancements */
+  .text-railway-title {
+    @apply text-3xl font-bold text-primary bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
+  }
+
+  .text-railway-subtitle {
+    @apply text-xl font-semibold text-foreground;
+  }
+
+  .text-gov-body {
+    @apply text-sm text-muted-foreground leading-relaxed;
+  }
+
+  /* Progress bars with animations */
+  .progress-smooth {
+    @apply transition-all duration-1000 ease-out;
+  }
+
+  /* Modal and dialog animations */
+  .modal-backdrop {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm animate-[fade-in_0.3s_ease-out];
+  }
+
+  .modal-content {
+    @apply animate-[scale-in_0.3s_ease-out];
+  }
+
+  /* Floating action styles */
+  .floating-action {
+    @apply fixed bottom-6 right-6 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-large hover:shadow-xl transition-[var(--transition-smooth)] hover:scale-110;
+  }
+
+  /* Enhanced scrollbars */
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-muted rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary/60 rounded-full hover:bg-primary/80;
+  }
+}
